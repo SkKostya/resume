@@ -1,0 +1,54 @@
+@charset 'UTF-8';
+
+$pathToIconFont: './../build/iconfont/';
+
+// С иконочными шрифтами еще не разобрался
+
+// @font-face {
+//     font-family: 'iconic';
+//     src: url('#{$pathToIconFont}iconfont.eot');
+//     src: url('#{$pathToIconFont}iconfont.eot?iefix') format('eot'),
+//         url('#{$pathToIconFont}iconfont.woff') format('woff'),
+//         url('#{$pathToIconFont}iconfont.ttf') format('ttf'),
+//         url('#{$pathToIconFont}iconfont.svg#iconic') format('svg');
+// }
+
+$icons: ();
+
+@function iconic-char($filename) {
+    @each $icon in $icons {
+        @if ($filename == map-get($icon, name)) {
+            $char: map-get($icon, value);
+            
+            @return $char;
+        }
+    }
+}
+
+@mixin iconic($filename, $insert: after, $extend: true) {
+    &::#{$insert} {
+        content: iconic-char($filename);
+    }
+}
+
+.iconic {
+    font-family: 'iconic';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    text-decoration: none;
+    text-transform: none;
+    color: inherit;
+    line-height: normal;
+    vertical-align: middle;
+
+    @each $icon in $icons {
+        $name: map-get($icon, name);
+        
+        &--#{$name} {
+            @include iconic($name);
+        }
+    }
+}

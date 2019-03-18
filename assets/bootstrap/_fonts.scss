@@ -1,0 +1,7 @@
+@charset 'UTF-8';
+
+$pathToFonts: './../build/fonts';
+
+@include font-face('MyriadPro', '#{$pathToFonts}/MyriadPro-Regular', $exts: eot ttf woff);
+@include font-face('MyriadPro-Bold', '#{$pathToFonts}/MyriadPro-Bold', bold, $exts: eot ttf woff);
+@include font-face('MyriadPro-Light', '#{$pathToFonts}/MyriadPro-LightSemiExt', 300, $exts: eot ttf woff);
